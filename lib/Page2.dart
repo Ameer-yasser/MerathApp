@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -140,8 +141,19 @@ class _Page2State extends State<Page2> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            property.add(TextInput);
-            Price.add(Priceinput);
+
+            if(Priceinput == 0 || TextInput.isEmpty){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Enter Property Name and Price'),
+                  duration: Duration(seconds: 2),
+              ),
+              );
+            }
+            else{
+              property.add(TextInput);
+              Price.add(Priceinput);
+            }
+
           });
         },
         child: const Icon(Icons.add),
