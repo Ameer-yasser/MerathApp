@@ -94,31 +94,26 @@ class _Page2State extends State<Page2> {
                       itemBuilder: (context, index) {
                         return Card(
                           child: ListTile(
-                            title: Text(property[index]),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                setState(() {
-                                  Price.removeAt(index);
-                                  property.removeAt(index);                                });
-                              },
+                            title:
+                            Row(
+                          children: [
+                            Expanded(
+                                 flex: 2,
+                                child: Text(property[index]),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
 
-                  const SizedBox(width: 16), // spacing
+                            Expanded(
+                              flex: 1,
+                              child: Text("Price: ${Price[index]}",
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
 
-                  // Price list
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: Price.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            title: Text('Price: ${Price[index]}'),
+
+                            ),
+                          ],
+                            ),
+
                             trailing: IconButton(
                               icon: const Icon(Icons.delete),
                               onPressed: () {
@@ -133,6 +128,7 @@ class _Page2State extends State<Page2> {
                       },
                     ),
                   ),
+
                 ],
               ),
             ),
