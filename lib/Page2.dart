@@ -31,9 +31,9 @@ class Page2 extends StatefulWidget {
 
 class _Page2State extends State<Page2> {
   String TextInput = '';
-  int Priceinput = 0;
+  double Priceinput = 0;
   List<String> property = ["Car", "House", "Land"];
-  List<int> Price = [50, 60, 90];
+  List<double> Price = [50.0, 60.0, 90.0];
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +74,52 @@ class _Page2State extends State<Page2> {
                     ),
                     onChanged: (value) {
                       setState(() {
-                        Priceinput = int.tryParse(value) ?? 0;
+                        Priceinput = double.tryParse(value) ?? 0;
                       });
                     },
                   ),
                 ),
+
+                const SizedBox(width: 16), // spacing
+
+
+                //Add button
+                Container(
+
+                  width: 60,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+
+                  child: IconButton(
+
+                   color: Colors.white,
+                    onPressed: (){
+                     setState(() {
+
+                    if(Priceinput == 0 || TextInput.isEmpty){
+                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Enter Property Name and Price'),
+                  duration: Duration(seconds: 2),
+                       ),
+                       );
+                       }
+                   else{
+                  property.add(TextInput);
+                  Price.add(Priceinput);
+                   }
+
+                    });
+
+                     },
+
+                    icon: const Icon(Icons.add),)
+                ),
+                
+                
+                
               ],
             ),
 
@@ -141,7 +182,7 @@ class _Page2State extends State<Page2> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-
+          /*
             if(Priceinput == 0 || TextInput.isEmpty){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text('Enter Property Name and Price'),
@@ -153,10 +194,10 @@ class _Page2State extends State<Page2> {
               property.add(TextInput);
               Price.add(Priceinput);
             }
-
+             */
           });
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.keyboard_arrow_right),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
